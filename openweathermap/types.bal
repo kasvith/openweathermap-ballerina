@@ -2,7 +2,7 @@
 #
 # + lat - lat City geo location, longitude
 # + lon - lon City geo location, latitude
-type Coord record {
+public type Coord record {
     float lat = 0;
     float lon = 0;
 };
@@ -13,7 +13,7 @@ type Coord record {
 # + main - main Group of weather parameters (Rain, Snow, Extreme etc.) 
 # + description - description Weather condition within the group 
 # + icon - icon  Weather icon id
-type Weather record {
+public type Weather record {
     int id = 0;
     string main = "";
     string description = "";
@@ -29,7 +29,7 @@ type Weather record {
 # + temp_max - temp_max Maximum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit. 
 # + sea_level - sea_level Atmospheric pressure on the sea level, hPa 
 # + grnd_level - grnd_level Atmospheric pressure on the ground level, hPa
-type Main record {
+public type Main record {
     float temp = 0;
     float pressure = 0;
     float humidity = 0;
@@ -43,7 +43,7 @@ type Main record {
 #
 # + speed - speed Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour. 
 # + deg - deg Wind direction, degrees (meteorological)
-type Wind record {
+public type Wind record {
     float speed = 0;
     float deg = 0;
 };
@@ -52,7 +52,7 @@ type Wind record {
 #
 # + h1 - h1 Snow volume for the last 1 hour, mm 
 # + h3 - h3 Snow volume for the last 3 hours, mm
-type Snow record {
+public type Snow record {
     float h1 = 0;
     float h3 = 0;
 };
@@ -61,7 +61,7 @@ type Snow record {
 #
 # + h1 - h1 Rain volume for the last 1 hour, mm 
 # + h3 - h3 Rain volume for the last 3 hours, mm
-type Rain record {
+public type Rain record {
     float h1 = 0;
     float h3 = 0;
 };
@@ -74,7 +74,7 @@ type Rain record {
 # + country - country Country code (GB, JP etc.)
 # + sunrise - sunrise Sunrise time, unix, UTC 
 # + sunset - sunset Sunset time, unix, UTC
-type Sys record {
+public type Sys record {
     int _type = 0;
     int id = 0;
     string message = "";
@@ -86,26 +86,28 @@ type Sys record {
 # Represents cloud record
 #
 # + _all - _all Cloudiness, %
-type Clouds record {
+# + today - today Cloudiness today, %
+public type Clouds record {
     float _all = 0;
+    float today = 0;
 };
 
-# Description
+# Represents a weather record
 #
-# + id - id Parameter Description 
-# + name - name Parameter Description 
-# + cod - cod Parameter Description 
-# + base - base Parameter Description 
-# + dt - dt Parameter Description 
-# + weather - weather Parameter Description 
-# + coord - coord Parameter Description 
-# + main - main Parameter Description 
-# + wind - wind Parameter Description 
-# + clouds - clouds Parameter Description 
-# + rain - rain Parameter Description 
-# + snow - snow Parameter Description 
-# + sys - sys Parameter Description
-type WeatherRecord record {
+# + id - id City ID
+# + name - name City name
+# + cod - cod Internal parameter 
+# + base - base Internal parameter
+# + dt - dt Time of data calculation, unix, UTC 
+# + weather - weather Weather record
+# + coord - coord Coordinations
+# + main - main Main parameters 
+# + wind - wind Wind conditions 
+# + clouds - clouds Cloud conditions
+# + rain - rain Rain conditions
+# + snow - snow Snow conditions
+# + sys - sys System parameters
+public type WeatherRecord record {
     int id = 0;
     string name = "";
     int cod = 0;
@@ -121,15 +123,41 @@ type WeatherRecord record {
     Sys sys = {};
 };
 
-# Description
+# Represents multiple weather records together
 #
-# + message - message Parameter Description 
-# + cod - cod Parameter Description 
-# + count - count Parameter Description 
-# + records - records Parameter Description
-type BulkWeatherRecord record {
+# + message - message Message description
+# + cod - cod Internal parameter
+# + count - count Number of records
+# + records - records Weather records for request
+public type MultiWeatherRecord record {
     string message = "";
     int cod = 0;
     int count = 0;
     WeatherRecord[] records = [];
+};
+
+# Reresents a geographical bounding box
+#
+# + lon_left - lon_left Left point of longitude
+# + lat_bottom - lat_bottom Bottom point of latitude
+# + lon_right - lon_right Right point of longitude 
+# + lat_top - lat_top Yop point of latitude
+# + zoom - zoom Zooming level
+public type BoundingBox record {
+    float lon_left = 0;
+    float lat_bottom = 0;
+    float lon_right = 0;
+    float lat_top = 0;
+    int zoom = 0;
+};
+
+# Represents a configuration record
+#
+# + appid - appid APPID key given by OpenWeatherMaps
+# + lang - lang Language of interest see OpenWeatherMaps website
+# + units - units Type of unit(default is none which is kelvin). Use metric for Celsius, Use imperial for Fahrenheit
+public type OpenWeatherMapConfig record{
+    string appid;
+    string lang = "en";
+    string units = "";
 };
