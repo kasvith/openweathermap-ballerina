@@ -22,4 +22,4 @@ script:
 
 - ballerina init
 
-- ballerina build twilio --skiptests
+- ballerina build openweathermap --skiptests
