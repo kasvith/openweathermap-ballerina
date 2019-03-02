@@ -11,7 +11,7 @@ It also allows to fetch data over a circle or a box of coordinates.
 Import the libary from `kasvith/openweathermaps` to your project
 
 ```ballerina
-import kasvith/openweathermaps
+import kasvith/openweathermap
 ```
 
 **Obtain app id from Open Weather Maps**
