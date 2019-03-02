@@ -1,5 +1,7 @@
 # Open Weather Map API for Ballerina
 
+[![Build Status](https://travis-ci.com/kasvith/openweathermap-ballerina.svg?branch=master)](https://travis-ci.com/kasvith/openweathermap-ballerina) ![GitHub](https://img.shields.io/github/license/kasvith/openweathermap-ballerina.svg)
+
 The Open Weather Maps connector allows you to fetch data from Open Weather Maps based on city name, zip, id etc.
 It also allows to fetch data over a circle or a box of coordinates.
 
