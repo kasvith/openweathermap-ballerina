@@ -92,21 +92,21 @@ public type Clouds record {
     float today = 0;
 };
 
-# Description
+# Represents a weather record
 #
-# + id - id Parameter Description 
-# + name - name Parameter Description 
-# + cod - cod Parameter Description 
-# + base - base Parameter Description 
-# + dt - dt Parameter Description 
-# + weather - weather Parameter Description 
-# + coord - coord Parameter Description 
-# + main - main Parameter Description 
-# + wind - wind Parameter Description 
-# + clouds - clouds Parameter Description 
-# + rain - rain Parameter Description 
-# + snow - snow Parameter Description 
-# + sys - sys Parameter Description
+# + id - id City ID
+# + name - name City name
+# + cod - cod Internal parameter 
+# + base - base Internal parameter
+# + dt - dt Time of data calculation, unix, UTC 
+# + weather - weather Weather record
+# + coord - coord Coordinations
+# + main - main Main parameters 
+# + wind - wind Wind conditions 
+# + clouds - clouds Cloud conditions
+# + rain - rain Rain conditions
+# + snow - snow Snow conditions
+# + sys - sys System parameters
 public type WeatherRecord record {
     int id = 0;
     string name = "";
@@ -125,10 +125,10 @@ public type WeatherRecord record {
 
 # Represents multiple weather records together
 #
-# + message - message Parameter Description 
-# + cod - cod Parameter Description 
-# + count - count Parameter Description 
-# + records - records Parameter Description
+# + message - message Message description
+# + cod - cod Internal parameter
+# + count - count Number of records
+# + records - records Weather records for request
 public type MultiWeatherRecord record {
     string message = "";
     int cod = 0;
@@ -136,6 +136,13 @@ public type MultiWeatherRecord record {
     WeatherRecord[] records = [];
 };
 
+# Reresents a geographical bounding box
+#
+# + lon_left - lon_left Left point of longitude
+# + lat_bottom - lat_bottom Bottom point of latitude
+# + lon_right - lon_right Right point of longitude 
+# + lat_top - lat_top Yop point of latitude
+# + zoom - zoom Zooming level
 public type BoundingBox record {
     float lon_left = 0;
     float lat_bottom = 0;
@@ -144,6 +151,11 @@ public type BoundingBox record {
     int zoom = 0;
 };
 
+# Represents a configuration record
+#
+# + appid - appid APPID key given by OpenWeatherMaps
+# + lang - lang Language of interest see OpenWeatherMaps website
+# + units - units Type of unit(default is none which is kelvin). Use metric for Celsius, Use imperial for Fahrenheit
 public type OpenWeatherMapConfig record{
     string appid;
     string lang = "en";
