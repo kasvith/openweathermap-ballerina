@@ -28,8 +28,14 @@ openweathermap:OpenWeatherMapClient owmClient =  new({
 });
 ```
 
-**Use client to obtain weather of a city by ID**
+**Use client to obtain weather of a city by Name**
 ```ballerina
 var result = owmClient->getWeatherByCityName("Colombo");
+io:println(result);
+```
+
+**Use client to obtain weather of a location**
+```ballerina
+var result = owmClient->getWeatherByCityCoordinates({lat: 10, lon: 10});
 io:println(result);
 ```
