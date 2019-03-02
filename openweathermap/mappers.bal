@@ -1,4 +1,3 @@
-import ballerina/io;
 // Mappers used to map json data from API to records
 
 function mapJsonToWeather(json payload) returns Weather|error {
