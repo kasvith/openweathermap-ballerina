@@ -85,9 +85,10 @@ public type OWMCurrentWeatherClient client object {
     # Get weather of a city by ZIP code
     #
     # + zip - ZIP code of city
+    # + countryCode - Country code of city
     # + return - WeatherRecord or an error
-    public remote function getWeatherByZipcode(int zip) returns WeatherRecord|error {
-        string reqPath = string `{{WEATHER}}?zip={{zip}}`;
+    public remote function getWeatherByZipcode(int zip, string countryCode) returns WeatherRecord|error {
+        string reqPath = string `{{WEATHER}}?zip={{zip}},{{countryCode}}`;
 
         return check self.requestWeatherRecord(reqPath);
     }
